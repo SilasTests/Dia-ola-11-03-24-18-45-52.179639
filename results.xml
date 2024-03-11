@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="3" time="0.066" timestamp="2024-03-07T09:40:25.339728" hostname="DESKTOP-MI0GD6P"><testcase classname="test_file" name="test_case_0" time="0.002" /><testcase classname="test_file" name="test_case_1" time="0.002"><failure message="AssertionError: assert '15.5' == '15.0'&#10;  &#10;  - 15.0&#10;  ?    ^&#10;  + 15.5&#10;  ?    ^">def test_case_1():
+        input_data = "10.2 5.3"
+        expected_result = "15.0"
+        cast_type = type(expected_result)
+    
+        result = subprocess.run(
+            "./main",
+            input=input_data.encode(),
+            stdout=subprocess.PIPE,
+        )
+&gt;       assert cast_type(result.stdout.decode()) == expected_result
+E       AssertionError: assert '15.5' == '15.0'
+E         
+E         - 15.0
+E         ?    ^
+E         + 15.5
+E         ?    ^
+
+test_file.py:26: AssertionError</failure></testcase><testcase classname="custom_classname" name="test_case_2" time="0.003"><failure message="AssertionError: assert '0.0' == '0'&#10;  &#10;  - 0&#10;  + 0.0">record_xml_attribute = &lt;bound method _NodeReporter.add_attribute of &lt;_pytest.junitxml._NodeReporter object at 0x7fdb078bc2e0&gt;&gt;
+
+    def test_case_2(record_xml_attribute):
+        input_data = "0 0"
+        expected_result = "0"
+        cast_type = type(expected_result)
+    
+        result = subprocess.run(
+            "./main",
+            input=input_data.encode(),
+            stdout=subprocess.PIPE,
+        )
+        record_xml_attribute("assertions", "REQ-1234")
+        record_xml_attribute("classname", "custom_classname")
+        print(f"O valor esperado era {expected_result}, mas foi encontrado {cast_type(result.stdout.decode())}")
+&gt;       assert cast_type(result.stdout.decode()) == expected_result
+E       AssertionError: assert '0.0' == '0'
+E         
+E         - 0
+E         + 0.0
+
+test_file.py:41: AssertionError</failure></testcase></testsuite></testsuites>
